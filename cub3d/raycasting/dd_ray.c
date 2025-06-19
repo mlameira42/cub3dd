@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:18:07 by mlameira          #+#    #+#             */
-/*   Updated: 2025/06/18 11:33:12 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/06/19 10:05:27 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ t_rays dda_ray(t_game *g, int x, int w, int h)
             ray.mapY += ray.stepY;
             ray.side = 1;
         }
+        //printf("Ray = (%f, %f)\n", ray.sideDistX, ray.sideDistY);
     }
     draw3d(g, &ray, x, w, h);
     return ray;

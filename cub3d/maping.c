@@ -20,7 +20,7 @@ int	getmap(char *filename, t_game *vars)
 		free(hld);
 		hld = get_next_line(fd);
 	}
-	if (!ft_strrchr(maphld, 'P') )
+	if (!ft_strrchr(maphld, 'P'))
 		return (close(fd), free(maphld), 0);
 	vars->map = NULL;
 	vars->map = ft_split(maphld, '\n');
@@ -29,15 +29,23 @@ int	getmap(char *filename, t_game *vars)
 	return (1);
 }
 
-int	getmapsize(t_game *vars)
+int	getplayerpos(t_game *vars)
 {
 	int	i;
+	int	j;
 
 	i = -1;
-	vars->mapsize[1] = ft_strlen(vars->map[++i]) * 50;
+	printf("hi\n");
 	while(vars->map[++i])
-		;
-	vars->mapsize[0] = i * 50;
-	//printf("(%d, %d)\n", vars->mapsize[1], vars->mapsize[0]);
-	return i;
+	{
+		j = -1;
+		while (vars->map[i][++j])
+			if (vars->map[i][j] == 'P')
+				{
+					vars->x = j;
+					vars->y = i;
+					return 0;
+				}
+	}
+	return 1;
 }

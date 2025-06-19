@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:23:34 by nsilva-n          #+#    #+#             */
-/*   Updated: 2025/06/18 11:33:33 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/06/19 10:13:55 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 #define SCREEN_W 640
 #define SCREEN_H 480
 #define TILE_SIZE 64
-#define MOVESPEED 1
+#define MOVESPEED 0.43
 
 typedef struct {
     double x, y;    // posição do jogador
@@ -90,7 +90,7 @@ int			ft_findchr(char *s, char c);
 t_rays		dda_ray(t_game *g, int x, int w, int h);
 void		moviment(int key, t_game *vars);
 int			getmap(char *filename, t_game *vars);
-int	getmapsize(t_game *vars);
+int         getplayerpos(t_game *vars);
 
 // bool		ft_ver_walls(void);
 

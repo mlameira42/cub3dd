@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:19:18 by mlameira          #+#    #+#             */
-/*   Updated: 2025/06/18 18:33:30 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/06/19 10:20:52 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int framerender (t_game *g)
     x = -1;
     while (++x < g->mapsize[0] * g->mapsize[1])
         g->pixels[x] = 0x000000;
-    printf("%d\n", x);
     mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
     mlx_clear_window(g->mlx, g->win);
     x = -1;
@@ -46,13 +45,13 @@ int main(int argc, char **argv) {
     g.planeX = 0; g.planeY = 0.66;
     g.mapsize[1] = 640;
     g.mapsize[0] = 480;
-    g.x = 5;
-    g.y = 3;
 
     if (argc <= 1)
         return 1;
     if (!getmap(argv[1], &g))
         return 1;
+    getplayerpos(&g);
+    printf("playe pos = (%f, %f)\n", g.x, g.y);
     g.mlx = mlx_init();
     g.win = mlx_new_window(g.mlx, g.mapsize[1], g.mapsize[0], "Raycaster");
     g.img = mlx_new_image(g.mlx, g.mapsize[1], g.mapsize[0]);
