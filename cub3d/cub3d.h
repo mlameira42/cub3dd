@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:23:34 by nsilva-n          #+#    #+#             */
-/*   Updated: 2025/06/19 10:13:55 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/06/20 17:56:09 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,16 @@
 #define SCREEN_W 640
 #define SCREEN_H 480
 #define TILE_SIZE 64
-#define MOVESPEED 0.43
+#define MOVESPEED 0.5
 
-typedef struct {
+typedef struct s_texture {
+	int 	*tex;
+    void    *img;
+    int     txt_h;
+    int     txt_w;
+} t_texture;
+
+typedef struct s_game {
     double x, y;    // posição do jogador
     double dirX, dirY;      // direção
     double planeX, planeY;  // plano da câmera
@@ -38,21 +45,26 @@ typedef struct {
     int bpp, line_len, endian;
 	char **map;
 	int	mapsize[2];
+    t_texture   wall_text;
 } t_game;
 
 typedef struct s_rays
 {
     double rayDirX;
     double rayDirY;
-    int mapX;
-    int mapY;
     double sideDistX;
     double sideDistY;
+    double deltaDistX;
+    double deltaDistY;
+    int prepDist;
+    int mapX;
+    int mapY;
     int stepX;
     int stepY;
     int side;
-    double deltaDistX;
-    double deltaDistY;
+    int color;
+    int drawStart; 
+    int drawEnd;
 }   t_rays;
 
 typedef	struct	s_player
@@ -91,6 +103,8 @@ t_rays		dda_ray(t_game *g, int x, int w, int h);
 void		moviment(int key, t_game *vars);
 int			getmap(char *filename, t_game *vars);
 int         getplayerpos(t_game *vars);
+void	    apply_texture(t_rays *r, t_game *g, int x, int tex_size, int lineHeight);
+int         texture(t_game *g, t_texture *wall);
 
 // bool		ft_ver_walls(void);
 

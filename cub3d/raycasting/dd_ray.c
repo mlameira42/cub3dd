@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:18:07 by mlameira          #+#    #+#             */
-/*   Updated: 2025/06/19 10:05:27 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/06/20 17:57:30 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,30 +54,24 @@ void    rays_innit(t_rays *ray, t_game *g)
     else
         perpDist = (rays->mapY - g->y + (1 - rays->stepY) / 2.0) / rays->rayDirY;
 */
-void    draw3d(t_game *g, t_rays *rays, int x, int w, int h)
+void    draw3d(t_game *g, t_rays *rays, int x, int h)
 {
-    double perpDist;
     int lineHeight;
-    int drawStart; 
-    int drawEnd;
-    int color;
-    int y;
+    int tex_size;
 
     if (rays->side == 0)
-        perpDist = rays->sideDistX - rays->deltaDistX;
+        rays->prepDist = rays->sideDistX - rays->deltaDistX;
     else
-        perpDist = rays->sideDistY - rays->deltaDistY;
-    lineHeight = (int)(h / perpDist);
-    drawStart = (-lineHeight / 2) + (h / 2);
-    drawEnd = (lineHeight / 2) + (h / 2);
-    if (drawStart < 0) 
-        drawStart = 0;
-    if (drawEnd >= h) 
-        drawEnd = h - 1;
-    color = rays->side ? 0xAAAAAA : 0xFFFFFF;
-    y = drawStart - 1;
-    while (++y < drawEnd )
-        g->pixels[y * w + x] = color; 
+        rays->prepDist = rays->sideDistY - rays->deltaDistY;
+    lineHeight = (int)(h / rays->prepDist);
+    rays->drawStart = (-lineHeight / 2) + (h / 2);
+    rays->drawEnd = (lineHeight / 2) + (h / 2);
+    if (rays->drawStart < 0) 
+        rays->drawStart = 0;
+    if (rays->drawEnd >= h) 
+        rays->drawEnd = h - 1;
+    tex_size = texture(g, &g->wall_text);
+    apply_texture(rays, g, x, tex_size, lineHeight); 
 }
 
 t_rays dda_ray(t_game *g, int x, int w, int h)
@@ -106,6 +100,6 @@ t_rays dda_ray(t_game *g, int x, int w, int h)
         }
         //printf("Ray = (%f, %f)\n", ray.sideDistX, ray.sideDistY);
     }
-    draw3d(g, &ray, x, w, h);
+    draw3d(g, &ray, x, h);
     return ray;
 }
