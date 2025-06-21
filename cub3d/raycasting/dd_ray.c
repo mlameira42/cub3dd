@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:18:07 by mlameira          #+#    #+#             */
-/*   Updated: 2025/06/21 01:37:16 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/06/21 14:37:40 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void    draw3d(t_game *g, t_rays *rays, int x, int h)
     int lineHeight;
 
     if (rays->side == 0)
-        rays->prepDist = rays->sideDistX - rays->deltaDistX;
+        rays->prepDist = (rays->sideDistX - rays->deltaDistX);
     else
-        rays->prepDist = rays->sideDistY - rays->deltaDistY;
+        rays->prepDist = (rays->sideDistY - rays->deltaDistY);
     lineHeight = (int)(h / rays->prepDist);
     rays->drawStart = (-lineHeight / 2) + (h / 2);
     rays->drawEnd = (lineHeight / 2) + (h / 2);
@@ -76,7 +76,7 @@ t_rays dda_ray(t_game *g, int x, int w, int h)
 {
     t_rays  ray;
 
-    ray.rayDirX = g->dirX + g->planeX * (2 * x / (double)w - 1);
+    ray.rayDirX = g->dirX + g->planeX * (double)(2 * x / (double)w - 1);
     ray.rayDirY = g->dirY + g->planeY * (2 * x / (double)w - 1);
     ray.mapX = (int)g->x;
     ray.mapY = (int)g->y;
@@ -96,7 +96,6 @@ t_rays dda_ray(t_game *g, int x, int w, int h)
             ray.mapY += ray.stepY;
             ray.side = 1;
         }
-        //printf("Ray = (%f, %f)\n", ray.sideDistX, ray.sideDistY);
     }
     draw3d(g, &ray, x, h);
     return ray;

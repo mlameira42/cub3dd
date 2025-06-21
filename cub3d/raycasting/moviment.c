@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:22:42 by mlameira          #+#    #+#             */
-/*   Updated: 2025/06/20 17:12:04 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/06/21 14:46:19 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void    updown_mov(int key, t_game *vars)
     char up1;
     char up2;
 
-    //printf("%d, %d \n", (int)vars->x, (int)(vars->y + vars->dirY * MOVESPEED));
     up1 = vars->map[(int)vars->y][(int)(vars->x + vars->dirX * MOVESPEED)];
     up2 = vars->map[(int)(vars->y + vars->dirY * MOVESPEED)][(int)vars->x];
     if (key == 'w')

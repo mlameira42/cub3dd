@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:23:34 by nsilva-n          #+#    #+#             */
-/*   Updated: 2025/06/20 17:56:09 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/06/21 14:42:09 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_rays
     double sideDistY;
     double deltaDistX;
     double deltaDistY;
-    int prepDist;
+    double prepDist;
     int mapX;
     int mapY;
     int stepX;
@@ -104,7 +104,7 @@ void		moviment(int key, t_game *vars);
 int			getmap(char *filename, t_game *vars);
 int         getplayerpos(t_game *vars);
 void	    apply_texture(t_rays *r, t_game *g, int x, int tex_size, int lineHeight);
-int         texture(t_game *g, t_texture *wall);
+int         texture(t_game *g);
 
 // bool		ft_ver_walls(void);
 

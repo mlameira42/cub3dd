@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:19:18 by mlameira          #+#    #+#             */
-/*   Updated: 2025/06/21 01:36:26 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/06/21 11:49:00 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int main(int argc, char **argv)
     g.dirY = 0;
     g.planeX = 0;
     g.planeY = 0.66;
-    g.mapsize[1] = 640;
-    g.mapsize[0] = 480;
+    g.mapsize[1] = SCREEN_W;
+    g.mapsize[0] = SCREEN_H;
     if (argc <= 1)
         return 1;
     if (!getmap(argv[1], &g))
@@ -55,7 +55,7 @@ int main(int argc, char **argv)
     getplayerpos(&g);
     g.mlx = mlx_init();
     g.win = mlx_new_window(g.mlx, g.mapsize[1], g.mapsize[0], "Raycaster");
-    texture(&g, &g.wall_text);
+    texture(&g);
     g.img = mlx_new_image(g.mlx, g.mapsize[1], g.mapsize[0]);
     g.pixels = (int*)mlx_get_data_addr(g.img, &g.bpp, &g.line_len, &g.endian);
     for (int x = 0; x <  g.mapsize[1]; x++)
