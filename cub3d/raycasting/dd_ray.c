@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:18:07 by mlameira          #+#    #+#             */
-/*   Updated: 2025/06/20 17:57:30 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/06/21 01:37:16 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void    rays_innit(t_rays *ray, t_game *g)
 void    draw3d(t_game *g, t_rays *rays, int x, int h)
 {
     int lineHeight;
-    int tex_size;
 
     if (rays->side == 0)
         rays->prepDist = rays->sideDistX - rays->deltaDistX;
@@ -70,8 +69,7 @@ void    draw3d(t_game *g, t_rays *rays, int x, int h)
         rays->drawStart = 0;
     if (rays->drawEnd >= h) 
         rays->drawEnd = h - 1;
-    tex_size = texture(g, &g->wall_text);
-    apply_texture(rays, g, x, tex_size, lineHeight); 
+    apply_texture(rays, g, x, g->wall_text.txt_w, lineHeight); 
 }
 
 t_rays dda_ray(t_game *g, int x, int w, int h)

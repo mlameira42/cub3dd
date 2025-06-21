@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 09:30:53 by mlameira          #+#    #+#             */
-/*   Updated: 2025/06/20 18:05:49 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/06/21 01:36:03 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	texture(t_game *g, t_texture *wall)
 	g->wall_text.img = mlx_xpm_file_to_image(g->mlx, "./textures/wall.xpm", &wall->txt_w,\
 		&wall->txt_h);
 	wall->tex = (int *)mlx_get_data_addr(wall->img, &bpp, &llen, &endian);
-qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq	if (!g->wall_text.img)
+	if (!g->wall_text.img)
 		exit(2);
 	return wall->txt_w;
 }
