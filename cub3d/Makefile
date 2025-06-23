@@ -6,7 +6,7 @@
 #    By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 12:54:07 by nsilva-n          #+#    #+#              #
-#    Updated: 2025/06/20 17:40:30 by mlameira         ###   ########.fr        #
+#    Updated: 2025/06/23 11:52:10 by mlameira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = cub3d
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRC = 	testes.c maping.c get_next_line.c get_next_line_utils.c\
-			raycasting/dd_ray.c raycasting/moviment.c raycasting/texture.c
+			raycasting/dd_ray.c raycasting/moviment.c raycasting/texture.c\
+			raycasting/floorcast.c
 
 OBJ_DIR = objects
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))

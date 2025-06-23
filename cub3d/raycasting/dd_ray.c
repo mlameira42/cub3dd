@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:18:07 by mlameira          #+#    #+#             */
-/*   Updated: 2025/06/21 14:37:40 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/06/23 11:26:33 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_rays dda_ray(t_game *g, int x, int w, int h)
     t_rays  ray;
 
     ray.rayDirX = g->dirX + g->planeX * (double)(2 * x / (double)w - 1);
-    ray.rayDirY = g->dirY + g->planeY * (2 * x / (double)w - 1);
+    ray.rayDirY = g->dirY + g->planeY * (double)(2 * x / (double)w - 1);
     ray.mapX = (int)g->x;
     ray.mapY = (int)g->y;
 

@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:19:18 by mlameira          #+#    #+#             */
-/*   Updated: 2025/06/21 11:49:00 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/06/23 11:52:49 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int framerender (t_game *g)
         g->pixels[x] = 0x000000;
     mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
     mlx_clear_window(g->mlx, g->win);
+    floorcast(g);
     x = -1;
     while (++x < g->mapsize[1])
         dda_ray(g, x, g->mapsize[1], g->mapsize[0]);
@@ -58,8 +59,7 @@ int main(int argc, char **argv)
     texture(&g);
     g.img = mlx_new_image(g.mlx, g.mapsize[1], g.mapsize[0]);
     g.pixels = (int*)mlx_get_data_addr(g.img, &g.bpp, &g.line_len, &g.endian);
-    for (int x = 0; x <  g.mapsize[1]; x++)
-        dda_ray(&g, x,  g.mapsize[1], g.mapsize[0]);
+    framerender (&g);
     mlx_put_image_to_window(g.mlx, g.win, g.img, 0, 0);
     mlx_hook(g.win, 2, 1L<<0, createv, &g);
     mlx_loop(g.mlx);

@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:23:34 by nsilva-n          #+#    #+#             */
-/*   Updated: 2025/06/21 14:42:09 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/06/23 11:50:52 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,19 @@ typedef struct s_game {
 	char **map;
 	int	mapsize[2];
     t_texture   wall_text;
+    t_texture   floor_tex;
 } t_game;
+
+typedef struct s_floor {
+	int		p;
+	float	rawDistance;
+	float	floorStepX;
+	float	floorStepY;
+    float   floorX;
+    float   floorY;
+    int     tx;
+    int     ty;
+} t_floor;
 
 typedef struct s_rays
 {
@@ -66,12 +78,6 @@ typedef struct s_rays
     int drawStart; 
     int drawEnd;
 }   t_rays;
-
-typedef	struct	s_player
-{
-	void	*img;
-	int		pos[2];
-}	t_player;
 
 typedef struct s_global
 {
@@ -105,6 +111,7 @@ int			getmap(char *filename, t_game *vars);
 int         getplayerpos(t_game *vars);
 void	    apply_texture(t_rays *r, t_game *g, int x, int tex_size, int lineHeight);
 int         texture(t_game *g);
+void        floorcast(t_game *g);
 
 // bool		ft_ver_walls(void);
 
