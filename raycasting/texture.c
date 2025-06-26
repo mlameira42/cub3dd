@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 09:30:53 by mlameira          #+#    #+#             */
-/*   Updated: 2025/06/24 13:02:50 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/06/26 07:36:13 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,28 @@ int	texture(t_game *g)
 	return 1;
 }
 
-void	apply_texture(t_rays *r, t_game *g, int x, int tex_size, int lineHeight)
+static void	calculate_tex(t_rays *r, t_game *g, int *texX, int tex_size)
 {
 	double wallX;
-	int texX;
-	int texY;
-	int y;
-	double texPos;
-	double step;
 
 	if (r->side == 0)
 		wallX = g->y + r->prepDist * r->rayDirY;
 	else
 		wallX = g->x + r->prepDist * r->rayDirX;
     wallX -= floor((wallX));
-    texX = (int)(wallX * (double)tex_size);
+    *(texX) = (int)(wallX * (double)tex_size);
     if((r->side==0 && r->rayDirX>0) || (r->side==1 && r->rayDirY<0))
-		texX = tex_size - texX-1;
+		*(texX) = tex_size - *(texX)-1;
+}
+void	apply_texture(t_rays *r, t_game *g, int x, int tex_size, int lineHeight)
+{
+	int texX;
+	int texY;
+	int y;
+	double texPos;
+	double step;
+
+	calculate_tex(r, g, &texX, tex_size);
 	y = r->drawStart - 1;
 	step = (double)g->wall_text[g->texside].txt_h / lineHeight;
 	texPos = (r->drawStart - SCREEN_H / 2 + lineHeight / 2) * step;

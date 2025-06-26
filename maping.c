@@ -35,7 +35,6 @@ int	getplayerpos(t_game *vars)
 	int	j;
 
 	i = -1;
-	printf("hi\n");
 	while(vars->map[++i])
 	{
 		j = -1;

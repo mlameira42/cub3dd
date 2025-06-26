@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:44:26 by mlameira          #+#    #+#             */
-/*   Updated: 2025/06/24 13:18:23 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/06/26 07:38:59 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ char	find_player(t_game *g)
 		while(glob()->map[i][++j])
 			if (ft_strchr("NWSE", glob()->map[i][j]))
 			{
-				g->x = j;
-				g->y = i;
+				g->x = j + 0.5;
+				g->y = i + 0.5;
 				g->dir = glob()->map[i][j];
 				glob()->map[i][j] = '0';
 				return 0;
