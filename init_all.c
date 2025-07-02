@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:44:26 by mlameira          #+#    #+#             */
-/*   Updated: 2025/06/26 07:38:59 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/02 11:03:20 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	init_game(t_game *g)
 	g->mlx = mlx_init();
     g->win = mlx_new_window(g->mlx, g->mapsize[1], g->mapsize[0], "Raycaster");
     if (!texture(g))
-		ft_exit(2);
+		ft_printf("Texture "), ft_exit(2);
 	g->img = mlx_new_image(g->mlx, g->mapsize[1], g->mapsize[0]);
     g->pixels = (int*)mlx_get_data_addr(g->img, &g->bpp, &g->line_len, &g->endian);
 	g->texside = 0;

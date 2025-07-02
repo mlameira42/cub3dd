@@ -6,36 +6,36 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:19:18 by mlameira          #+#    #+#             */
-/*   Updated: 2025/06/26 09:52:22 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/02 11:10:50 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "cub3d.h"
 
-int framerender (t_game *g)
+int framerender(t_game *g)
 {
-    int x;
-    
-    x = -1;
-    while (++x < g->mapsize[0] * g->mapsize[1])
-        g->pixels[x] = 0x000000;
-    mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
-    mlx_clear_window(g->mlx, g->win);
-    floorcast(g);
-    x = -1;
-    while (++x < g->mapsize[1])
-        dda_ray(g, x, g->mapsize[1], g->mapsize[0]);
-    mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
-    return 1;
+	int x;
+
+	x = -1;
+	while (++x < g->mapsize[0] * g->mapsize[1])
+		g->pixels[x] = 0x000000;
+	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
+	mlx_clear_window(g->mlx, g->win);
+	floorcast(g);
+	x = -1;
+	while (++x < g->mapsize[1])
+		dda_ray(g, x, g->mapsize[1], g->mapsize[0]);
+	spritecasting(g, 1.7, 18);
+	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
+	return 1;
 }
 int createv(int key, t_game *vars)
 {
-    moviment(key, vars);
-    if (key == 'q')    
-        exit(2);
-   framerender(vars);
-    return 1;
+	moviment(key, vars);
+	if (key == 'q')
+		exit(2);
+	framerender(vars);
+	return 1;
 }
 /*
 int main(int argc, char **argv)

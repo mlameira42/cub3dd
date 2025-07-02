@@ -6,7 +6,7 @@
 #    By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 12:54:07 by nsilva-n          #+#    #+#              #
-#    Updated: 2025/06/24 12:34:20 by mlameira         ###   ########.fr        #
+#    Updated: 2025/06/30 16:49:40 by mlameira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror
 SRC = 	main.c validate.c init_all.c																									\
 		others/ft_close.c others/ft_copy_info.c others/ft_copy_ints.c others/ft_copy_map.c others/ft_debugger.c others/ft_free_strs.c	\
 		others/ft_get_info.c others/ft_get_map_size.c others/ft_global.c others/ft_init_global.c others/ft_main_ver.c					\
-		others/ft_ver_info.c others/ft_ver_line.c																						\
+		others/ft_ver_info.c others/ft_ver_line.c raycasting/spritecasting.c															\
 		exit.c raycasting/dd_ray.c raycasting/floorcast.c					\
 		testes.c raycasting/moviment.c raycasting/texture.c\
 

@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:38:51 by mlameira          #+#    #+#             */
-/*   Updated: 2025/06/24 13:26:33 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/02 11:11:27 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_texture {
     void    *img;
     int     txt_h;
     int     txt_w;
+	double	ZBuffer[SCREEN_W];
 } t_texture;
 
 typedef struct s_game {
@@ -64,6 +65,7 @@ typedef struct s_game {
 	int				mapsize[2];
 	int				texside;
     t_texture   	wall_text[4];
+	t_texture		sprite_tex;
 	unsigned long	ceil;
     unsigned long	floor_tex;
 }					t_game;
@@ -145,6 +147,8 @@ void        floorcast(t_game *g);
 void		moviment(int key, t_game *vars);
 int			framerender (t_game *g);
 int			createv(int key, t_game *vars);
+int			sprite_tex(t_game *g);
+void		spritecasting(t_game *g, double sX, double sY);
 
 //int			getmap(char *filename, t_game *vars);
 //int         getplayerpos(t_game *vars);

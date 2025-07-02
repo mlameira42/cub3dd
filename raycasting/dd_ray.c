@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:18:07 by mlameira          #+#    #+#             */
-/*   Updated: 2025/06/24 13:01:19 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/02 11:09:38 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void    draw3d(t_game *g, t_rays *rays, int x, int h)
         rays->drawEnd = h - 1;
     get_wall_side(g, rays);
     apply_texture(rays, g, x, g->wall_text[g->texside].txt_w, lineHeight); 
+	glob()->render.sprite_tex.ZBuffer[x] = rays->prepDist;
 }
 
 t_rays dda_ray(t_game *g, int x, int w, int h)
@@ -98,7 +99,6 @@ t_rays dda_ray(t_game *g, int x, int w, int h)
     ray.rayDirY = g->dirY + g->planeY * (double)(2 * x / (double)w - 1);
     ray.mapX = (int)g->x;
     ray.mapY = (int)g->y;
-
     rays_innit(&ray, g);
     while (glob()->map[ray.mapY] && glob()->map[ray.mapY][ray.mapX] != '1') 
     {
