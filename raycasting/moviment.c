@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:22:42 by mlameira          #+#    #+#             */
-/*   Updated: 2025/06/26 10:37:48 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/07 11:41:59 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ void    updown_mov(int key, t_game *vars)
     }
     else
     {
-        if(glob()->map[(int)(vars->y - vars->dirY * MOVESPEED)][(int)vars->x] != '1')
+        if(glob()->map[(int)(vars->y - vars->dirY * MOVESPEED)]\
+			[(int)vars->x] != '1')
             vars->y -= vars->dirY * MOVESPEED;
-        if(glob()->map[(int)vars->y][(int)(vars->x - vars->dirX * MOVESPEED)] != '1')
+        if(glob()->map[(int)vars->y] \
+			[(int)(vars->x - vars->dirX * MOVESPEED)] != '1')
             vars->x -= vars->dirX * MOVESPEED;
     }
 }
@@ -55,28 +57,16 @@ static void rotate(int key, t_game *vars, double olddirx, double oldplanex)
 }
 static void sideways_walk(int key, t_game *vars)
 {
-    char up1;
-    char up2;
-    char dw1;
-    char dw2;
-
-    up1 = glob()->map[(int)vars->y][(int)(vars->x + vars->dirY * MOVESPEED)];
-    up2 = glob()->map[(int)(vars->y + vars->dirX * MOVESPEED)][(int)vars->x];
-    dw1 = glob()->map[(int)(vars->y - vars->dirX * MOVESPEED)][(int)vars->x];
-    dw2 = glob()->map[(int)vars->y][(int)(vars->x - vars->dirY * MOVESPEED)];
+   
     if (key == 'a')
     {
-        if(up1 && up1 != '1')
-            vars->x += vars->dirY * MOVESPEED;
-        if(up2 && up2 != '1')
-            vars->y -= vars->dirX * MOVESPEED;
+        movecorr(vars, vars->x + vars->dirY * MOVESPEED, \
+			vars->y + vars->dirX * MOVESPEED, 1);
     }
     else if (key == 'd')
     {
-        if(dw1 && dw1 != '1')
-            vars->y += vars->dirX * MOVESPEED;
-        if(dw2 && dw2 != '1')
-            vars->x -= vars->dirY * MOVESPEED;
+        movecorr(vars, vars->x - vars->dirY * MOVESPEED, \
+			vars->y - vars->dirX * MOVESPEED, -1);
     }
 }
 
@@ -92,7 +82,5 @@ void moviment(int key, t_game *vars)
         updown_mov(key, vars);
 
     sideways_walk(key, vars);
-    rotate(key, vars, olddirx, oldplanex);
-   // printf("key = %d\n", key);
-    
+    rotate(key, vars, olddirx, oldplanex);    
 }

@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:11:53 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/02 12:24:37 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/03 11:16:03 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,55 +24,72 @@ int	sprite_tex(t_game *g)
 		g->sprite_tex.tex = (int *)mlx_get_data_addr(g->sprite_tex.img, &bpp, &sl, &endian);
 	else
 		return 0;
+	printf("%d\n", g->sprite_tex.tex[2]);
 	return 1;
 }
-/*
-void sprite_utils(t_game *g)
+
+
+
+void sprite_utils(t_game *g, t_texture *sprite, double sX, double sY)
 {
+	double invDet;
+	double transformX;
 	
+	invDet = 1.0 / (g->planeX * g->dirY - g->dirX * g->planeY);
+	transformX = invDet * (g->dirY * (sX - g->x) - g->dirX * (sY - g->y));
+	sprite->transformY = invDet * ((-g->planeY) * (sX - g->x) + g->planeX * (sY - g->y));
+	sprite->spriteScreenX = (int)((SCREEN_W / 2) * (1 + transformX / sprite->transformY));
+	sprite->spriteHeight = abs((int)(SCREEN_H / (sprite->transformY))) / 1.5;
 }
-*/
+
+void drawingcalcs(t_texture *sprite)
+{
+	sprite->drawStartY = -sprite->spriteHeight / 2 + SCREEN_H / 2 + 5;
+	if (sprite->drawStartY < 0)
+		sprite->drawStartY = 0;
+	sprite->drawEndY = sprite->spriteHeight / 2 + SCREEN_H / 2;
+	if (sprite->drawEndY >= SCREEN_H)
+		sprite->drawEndY = SCREEN_H - 1;
+	sprite->spriteWidth = abs((int)(SCREEN_H / (sprite->transformY))) / 2;
+	sprite->drawStartX = -sprite->spriteWidth / 2 + sprite->spriteScreenX;
+	if (sprite->drawStartX < 0)
+		sprite->drawStartX = 0;
+	sprite->drawEndX = sprite->spriteWidth / 2 + sprite->spriteScreenX;
+	if (sprite->drawEndX >= SCREEN_W)
+		sprite->drawEndX = SCREEN_W - 1;
+}
+void drawstart(t_game *g, t_texture *sprite)
+{
+	int stripe;
+	int texX;
+	int texY;
+	int d;
+	int y;
+	__uint32_t color;
+	
+	stripe = sprite->drawStartX - 1;
+	while (++stripe < sprite->drawEndX)
+	{
+		texX = (int)(256 * (stripe - (-sprite->spriteWidth / 2 + \
+		sprite->spriteScreenX)) * sprite->txt_w / \
+		sprite->spriteWidth)/ 256;
+		if (sprite->transformY > 0 && stripe > 0 && stripe < SCREEN_W && \
+			sprite->transformY < sprite->ZBuffer[stripe])
+		y = sprite->drawStartY - 1;
+		while (++y < sprite->drawEndY)
+		{
+			d = (y) * 256 - SCREEN_H * 128 + sprite->spriteHeight * 128;
+			texY = ((d * g->sprite_tex.txt_h) / sprite->spriteHeight) / 256;
+			color = g->sprite_tex.tex[g->sprite_tex.txt_w * texY + texX];
+			if ((color & 0x00FFFFFF) != 0)
+				g->pixels[SCREEN_W * y + stripe] = color;
+		}
+	}
+}
 
 void spritecasting(t_game *g, double sX, double sY)
 {
-	double spriteX;
-	double spriteY;
-	double invDet;
-	double transformX;
-	double transformY;
-
-	spriteX = sX - g->x;
-	spriteY = sY - g->y;
-	invDet = 1.0 / (g->planeX * g->dirY - g->dirX * g->planeY); // required for correct matrix multiplication
-	transformX = invDet * (g->dirY * spriteX - g->dirX * spriteY);
-	transformY = invDet * ((-g->planeY) * spriteX + g->planeX * spriteY); // this is actually the depth inside the screen, that what Z is in 3D
-
-	int spriteScreenX = (int)((SCREEN_W / 2) * (1 + transformX / transformY));
-	int spriteHeight = abs((int)(SCREEN_H / (transformY))) / 1.5; // using 'transformY' instead of the real distance prevents fisheye
-	int drawStartY = -spriteHeight / 2 + SCREEN_H / 2 + 5;
-	if (drawStartY < 0)
-		drawStartY = 0;
-	int drawEndY = spriteHeight / 2 + SCREEN_H / 2;
-	if (drawEndY >= SCREEN_H)
-		drawEndY = SCREEN_H - 1;
-	int spriteWidth = abs((int)(SCREEN_H / (transformY))) / 2;
-	int drawStartX = -spriteWidth / 2 + spriteScreenX;
-	if (drawStartX < 0)
-		drawStartX = 0;
-	int drawEndX = spriteWidth / 2 + spriteScreenX;
-	if (drawEndX >= SCREEN_W)
-		drawEndX = SCREEN_W - 1;
-	for (int stripe = drawStartX; stripe < drawEndX; stripe++)
-	{
-		int texX = (int)(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * g->sprite_tex.txt_w / spriteWidth) / 256;
-		if (transformY > 0 && stripe > 0 && stripe < SCREEN_W && transformY < g->sprite_tex.ZBuffer[stripe])
-			for (int y = drawStartY; y < drawEndY; y++) // for every pixel of the current stripe
-			{
-				int d = (y) * 256 - SCREEN_H * 128 + spriteHeight * 128; // 256 and 128 factors to avoid floats
-				int texY = ((d * g->sprite_tex.txt_h) / spriteHeight) / 256;
-				__uint32_t color = g->sprite_tex.tex[g->sprite_tex.txt_w * texY + texX]; // get current color from the texture
-				if ((color & 0x00FFFFFF) != 0)
-					g->pixels[SCREEN_W * y + stripe] = color; // paint pixel if it isn't black, black is the invisible color
-			}
-    }
+	sprite_utils(g, &g->sprite_tex, sX, sY);
+	drawingcalcs(&g->sprite_tex);
+	drawstart(g, &g->sprite_tex);
 }

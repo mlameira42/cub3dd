@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:38:51 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/02 11:11:27 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/07 11:34:26 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@ typedef struct s_texture {
     int     txt_h;
     int     txt_w;
 	double	ZBuffer[SCREEN_W];
+	double transformY;
+	int spriteWidth;
+	int drawStartY;
+	int drawEndY;
+	int drawStartX;
+	int drawEndX;
+	int spriteScreenX;
+	int spriteHeight;
 } t_texture;
 
 typedef struct s_game {
@@ -149,7 +157,7 @@ int			framerender (t_game *g);
 int			createv(int key, t_game *vars);
 int			sprite_tex(t_game *g);
 void		spritecasting(t_game *g, double sX, double sY);
-
+int			movecorr(t_game *g, int posX, double posY, int side);
 //int			getmap(char *filename, t_game *vars);
 //int         getplayerpos(t_game *vars);
 // bool		ft_ver_walls(void);
