@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_global.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:45:58 by nsilva-n          #+#    #+#             */
-/*   Updated: 2025/06/24 10:16:53 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/08 12:32:48 by nsilva-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_init_global(char *str)
 	if (!global->doc)
 		ft_exit(1);
 	global->map = NULL;
+	global->fld_map = NULL;
 	global->doc_len = ft_strlen(str);
 	global->fd = 0;
 	global->rows = 0;
@@ -33,4 +34,6 @@ void	ft_init_global(char *str)
 	global->empty_lines = 0;
 	global->isceilinfo = false;
 	global->isfloorinfo = false;
+	global->start_point[0] = 0;
+	global->start_point[1] = 0;
 }

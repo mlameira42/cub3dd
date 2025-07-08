@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:38:51 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/07 11:34:26 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/08 12:46:56 by nsilva-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct s_rays
 typedef struct s_global
 {
 	char		**map;
+	char		**fld_map;
 	char		*doc;
 	int			doc_len;
 	int			fd;
@@ -125,6 +126,7 @@ typedef struct s_global
 	int			*floor_color;
 	int			*ceil_color;
 	int			empty_lines;
+	int			start_point[2];
 	bool		isfloorinfo;
 	bool		isceilinfo;
 	t_game		render;
@@ -146,6 +148,9 @@ void		ft_get_map_size(void);
 void		ft_debugger(void);
 void		validate(char *av);
 void		init_all(char *map);
+bool		ft_dup_map(void);
+bool		ft_floodfill(char **map, int y, int x);
+void		ft_get_start(void);
 //int			ft_findchr(char *s, char c);
 //////////////////RAYS///////////////////////////////////
 t_rays		dda_ray(t_game *g, int x, int w, int h);

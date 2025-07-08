@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:56:16 by nsilva-n          #+#    #+#             */
-/*   Updated: 2025/06/24 10:12:49 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/08 12:15:18 by nsilva-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_exit(int status)
 		free(glob()->doc);
 	if (glob()->map)
 		ft_free_strs(glob()->map);
+	if (glob()->fld_map)
+		ft_free_strs(glob()->fld_map);
 	if (glob()->ceil_color)
 		free(glob()->ceil_color);
 	if (glob()->floor_color)
