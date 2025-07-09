@@ -6,7 +6,7 @@
 /*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 13:12:29 by nsilva-n          #+#    #+#             */
-/*   Updated: 2025/07/09 10:07:58 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/09 11:04:01 by nsilva-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ bool	ft_main_ver(void)
 		return (false);
 	if (!ft_copy_map() || !glob()->map[0])
 		return (false);
-	// ft_debugger();
 	return (true);
 }

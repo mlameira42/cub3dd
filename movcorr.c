@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   movcorr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 10:58:05 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/07 11:40:29 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/09 10:49:37 by nsilva-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int movecorr(t_game *g, int posX, double posY, int side)
+int	movecorr(t_game *g, int posX, double posY, int side)
 {
-	char mov1;
-	char mov2;
-	char mov3;
+	char	mov1;
+	char	mov2;
+	char	mov3;
 
 	mov1 = glob()->map[(int)g->y][posX];
 	mov2 = glob()->map[(int)posY][(int)g->x];
@@ -28,5 +28,5 @@ int movecorr(t_game *g, int posX, double posY, int side)
 		g->x += (g->dirY * MOVESPEED) * side;
 	if (mov2 && mov2 != '1' && mov3 != '1')
 		g->y -= (g->dirX * MOVESPEED) * side;
-	return 1;
+	return (1);
 }

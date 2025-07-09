@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   maping.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/09 10:51:28 by nsilva-n          #+#    #+#             */
+/*   Updated: 2025/07/09 10:51:47 by nsilva-n         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	getmap(char *filename, t_game *vars)
@@ -35,16 +47,18 @@ int	getplayerpos(t_game *vars)
 	int	j;
 
 	i = -1;
-	while(vars->map[++i])
+	while (vars->map[++i])
 	{
 		j = -1;
 		while (vars->map[i][++j])
+		{
 			if (vars->map[i][j] == 'P')
-				{
-					vars->x = j;
-					vars->y = i;
-					return 0;
-				}
+			{
+				vars->x = j;
+				vars->y = i;
+				return (0);
+			}
+		}
 	}
-	return 1;
+	return (1);
 }

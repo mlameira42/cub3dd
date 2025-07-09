@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:44:26 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/02 11:03:20 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/09 10:56:30 by nsilva-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,27 @@
 
 char	find_player(t_game *g)
 {
-	int i;
+	int	i;
 	int	j;
-	
+
 	i = -1;
 	while (glob()->map[++i])
-	{	
+	{
 		j = -1;
-		while(glob()->map[i][++j])
+		while (glob()->map[i][++j])
+		{
 			if (ft_strchr("NWSE", glob()->map[i][j]))
 			{
 				g->x = j + 0.5;
 				g->y = i + 0.5;
 				g->dir = glob()->map[i][j];
 				glob()->map[i][j] = '0';
-				return 0;
+				return (0);
 			}
+		}
 	}
 	g->dir = '\0';
-	return '\0';
+	return ('\0');
 }
 
 static void	player_updown(t_game *player)
@@ -71,24 +73,27 @@ static void	player_sides(t_game *player)
 	}
 }
 
-
 void	init_game(t_game *g)
 {
 	find_player(g);
 	player_sides(g);
 	player_updown(g);
-    g->mapsize[1] = SCREEN_W;
-    g->mapsize[0] = SCREEN_H;
+	g->mapsize[1] = SCREEN_W;
+	g->mapsize[0] = SCREEN_H;
 	g->mlx = mlx_init();
-    g->win = mlx_new_window(g->mlx, g->mapsize[1], g->mapsize[0], "Raycaster");
-    if (!texture(g))
-		ft_printf("Texture "), ft_exit(2);
+	g->win = mlx_new_window(g->mlx, g->mapsize[1], g->mapsize[0], "Raycaster");
+	if (!texture(g))
+	{
+		ft_printf("Texture ");
+		ft_exit(2);
+	}
 	g->img = mlx_new_image(g->mlx, g->mapsize[1], g->mapsize[0]);
-    g->pixels = (int*)mlx_get_data_addr(g->img, &g->bpp, &g->line_len, &g->endian);
+	g->pixels = (int *)mlx_get_data_addr(g->img, &g->bpp, &g->line_len,
+			&g->endian);
 	g->texside = 0;
 	framerender(g);
-	mlx_hook(g->win, 2, 1L<<0, createv, g);
-    mlx_loop(g->mlx);
+	mlx_hook(g->win, 2, 1L << 0, createv, g);
+	mlx_loop(g->mlx);
 }
 
 void	init_all( char *map)

@@ -6,7 +6,7 @@
 /*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 11:22:39 by nsilva-n          #+#    #+#             */
-/*   Updated: 2025/07/09 10:17:30 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/09 11:03:50 by nsilva-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ bool	ft_floodfill(char **map, int y, int x)
 	if (map[y][x] == '1' || map[y][x] == 'x')
 		return (true);
 	map[y][x] = 'x';
-	return (ft_floodfill(map, y + 1, x) &&
-			ft_floodfill(map, y - 1, x) &&
-			ft_floodfill(map, y, x + 1) &&
-			ft_floodfill(map, y, x - 1));
+	return (ft_floodfill(map, y + 1, x)
+		&& ft_floodfill(map, y - 1, x)
+		&& ft_floodfill(map, y, x + 1)
+		&& ft_floodfill(map, y, x - 1));
 }
