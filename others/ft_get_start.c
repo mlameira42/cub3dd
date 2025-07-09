@@ -6,7 +6,7 @@
 /*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 12:37:34 by nsilva-n          #+#    #+#             */
-/*   Updated: 2025/07/08 12:42:32 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/09 10:35:03 by nsilva-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,26 @@
 
 void	ft_get_start(void)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		len;
 
 	i = -1;
-	while (glob()->fld_map[++i])
+	len = 0;
+	while (glob()->map[++i])
 	{
-		j = -1;
-		while (glob()->fld_map[i][++j])
-			if (glob()->fld_map[i][++j] == 'N'
-				|| glob()->fld_map[i][++j] == 'S'
-				|| glob()->fld_map[i][++j] == 'E'
-				|| glob()->fld_map[i][++j] == 'W'
-				|| glob()->fld_map[i][++j] == '0')
-				break ;
+		if (ft_strchr(glob()->map[i], 'N'))
+			len = ft_strlen(ft_strchr(glob()->map[i], 'N'));
+		else if (ft_strchr(glob()->map[i], 'S'))
+			len = ft_strlen(ft_strchr(glob()->map[i], 'S'));
+		else if (ft_strchr(glob()->map[i], 'E'))
+			len = ft_strlen(ft_strchr(glob()->map[i], 'E'));
+		else if (ft_strchr(glob()->map[i], 'W'))
+			len = ft_strlen(ft_strchr(glob()->map[i], 'W'));
+		if (len)
+			break ;
 	}
 	if (i > glob()->rows)
 		return ;
 	glob()->start_point[0] = i;
-	glob()->start_point[1] = j;
+	glob()->start_point[1] = ft_strlen(glob()->map[i]) - len;
 }

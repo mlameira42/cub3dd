@@ -6,13 +6,13 @@
 #    By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 12:54:07 by nsilva-n          #+#    #+#              #
-#    Updated: 2025/07/08 12:46:34 by nsilva-n         ###   ########.fr        #
+#    Updated: 2025/07/09 10:04:12 by nsilva-n         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 SRC = 	main.c validate.c init_all.c																									\
 		others/ft_close.c others/ft_copy_info.c others/ft_copy_ints.c others/ft_copy_map.c others/ft_debugger.c others/ft_free_strs.c	\
 		others/ft_get_info.c others/ft_get_map_size.c others/ft_global.c others/ft_init_global.c others/ft_main_ver.c					\
