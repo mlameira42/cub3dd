@@ -6,7 +6,7 @@
 /*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 12:37:34 by nsilva-n          #+#    #+#             */
-/*   Updated: 2025/07/09 10:35:03 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/14 20:38:41 by nsilva-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_get_start(void)
 		if (len)
 			break ;
 	}
-	if (i > glob()->rows)
+	if (i == glob()->rows)
 		return ;
 	glob()->start_point[0] = i;
 	glob()->start_point[1] = ft_strlen(glob()->map[i]) - len;
