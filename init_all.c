@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:44:26 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/09 10:56:30 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/15 15:21:07 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ void	init_game(t_game *g)
 	g->mapsize[1] = SCREEN_W;
 	g->mapsize[0] = SCREEN_H;
 	g->mlx = mlx_init();
-	g->win = mlx_new_window(g->mlx, g->mapsize[1], g->mapsize[0], "Raycaster");
+	g->win = mlx_new_window(g->mlx, g->mapsize[1], g->mapsize[0], "Cub3d");
 	if (!texture(g))
-	{
-		ft_printf("Texture ");
-		ft_exit(2);
-	}
+		return ft_printf("Texture "), ft_exit(2);
+	sprite_find(g, &g->sprite_tex);
 	g->img = mlx_new_image(g->mlx, g->mapsize[1], g->mapsize[0]);
+	if (!g->img)
+		return ft_exit(2);
 	g->pixels = (int *)mlx_get_data_addr(g->img, &g->bpp, &g->line_len,
 			&g->endian);
 	g->texside = 0;

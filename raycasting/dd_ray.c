@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:18:07 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/02 11:09:38 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/15 15:24:50 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ t_rays dda_ray(t_game *g, int x, int w, int h)
     rays_innit(&ray, g);
     while (glob()->map[ray.mapY] && glob()->map[ray.mapY][ray.mapX] != '1') 
     {
+		sprite_visibility(g, ray.mapX, ray.mapY);
         if (ray.sideDistX < ray.sideDistY) 
         {
             ray.sideDistX += ray.deltaDistX;

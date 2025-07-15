@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   testes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:19:18 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/09 10:48:58 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/15 15:23:22 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	framerender(t_game *g)
 	x = -1;
 	while (++x < g->mapsize[1])
 		dda_ray(g, x, g->mapsize[1], g->mapsize[0]);
-	spritecasting(g, 1.7, 18);
+	spritecasting(g, &g->sprite_tex, g->sprite_tex.spriteX, \
+		g->sprite_tex.spriteY);
 	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
 	return (1);
 }

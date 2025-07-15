@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:11:53 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/03 11:16:03 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/15 15:27:55 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,15 @@ int	sprite_tex(t_game *g)
 	int bpp;
 	int endian;
 	int sl;
-	
+
+	g->sprite_tex.isHiting = 0;
 	g->sprite_tex.img = mlx_xpm_file_to_image(g->mlx, "./textures/barril.xpm", &g->sprite_tex.txt_w, &g->sprite_tex.txt_h);
 	if (g->sprite_tex.img)
 		g->sprite_tex.tex = (int *)mlx_get_data_addr(g->sprite_tex.img, &bpp, &sl, &endian);
 	else
 		return 0;
-	printf("%d\n", g->sprite_tex.tex[2]);
 	return 1;
 }
-
-
 
 void sprite_utils(t_game *g, t_texture *sprite, double sX, double sY)
 {
@@ -87,9 +85,11 @@ void drawstart(t_game *g, t_texture *sprite)
 	}
 }
 
-void spritecasting(t_game *g, double sX, double sY)
+void spritecasting(t_game *g, t_texture *sprite, double sX, double sY)
 {
-	sprite_utils(g, &g->sprite_tex, sX, sY);
-	drawingcalcs(&g->sprite_tex);
-	drawstart(g, &g->sprite_tex);
+	if (!sprite->isHiting)
+		return ;
+	sprite_utils(g, sprite, sX, sY);
+	drawingcalcs(sprite);
+	drawstart(g, sprite);
 }

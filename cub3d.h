@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:38:51 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/08 12:46:56 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/15 15:28:46 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ typedef struct s_texture {
 	int drawEndX;
 	int spriteScreenX;
 	int spriteHeight;
+	double spriteX;
+	double spriteY;
+	int isHiting;
 } t_texture;
 
 typedef struct s_game {
@@ -160,8 +163,10 @@ void        floorcast(t_game *g);
 void		moviment(int key, t_game *vars);
 int			framerender (t_game *g);
 int			createv(int key, t_game *vars);
+void		sprite_find(t_texture *sprite);
+void		sprite_visibility(t_game *g, int rayX, int rayY);
 int			sprite_tex(t_game *g);
-void		spritecasting(t_game *g, double sX, double sY);
+void		spritecasting(t_game *g, t_texture *sprite, double sX, double sY);
 int			movecorr(t_game *g, int posX, double posY, int side);
 //int			getmap(char *filename, t_game *vars);
 //int         getplayerpos(t_game *vars);
