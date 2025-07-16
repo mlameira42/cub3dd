@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:56:16 by nsilva-n          #+#    #+#             */
-/*   Updated: 2025/07/08 12:15:18 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/16 08:47:55 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	free_game(t_game *g)
+{
+	int i;
+
+	i = -1;
+	if (glob()->render.mlx)
+	{
+		while (++i < 4)
+			if (g->wall_text[i].img)
+				mlx_destroy_image(g->mlx, g->wall_text[i].img);
+		if (g->sprite_tex.img)
+			mlx_destroy_image(g->mlx, g->sprite_tex.img);
+		if (g->img)
+			mlx_destroy_image(g->mlx, g->img);
+		if (g->win)
+			mlx_destroy_window(g->mlx, g->win);
+		mlx_destroy_display(g->mlx);
+		mlx_loop_end(g->mlx);
+		free(g->mlx);
+	}
+}
 
 void	ft_exit(int status)
 {
@@ -32,6 +54,7 @@ void	ft_exit(int status)
 		free(glob()->e_wall_tex);
 	if (glob()->w_wall_tex)
 		free(glob()->w_wall_tex);
+	free_game(&glob()->render);
 	ft_close();
 	if (status)
 		ft_fprintf(2, "Error\n");

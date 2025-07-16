@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:19:18 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/15 15:23:22 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/16 08:44:40 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	createv(int key, t_game *vars)
 {
 	moviment(key, vars);
 	if (key == 'q')
-		exit(2);
+		ft_exit(2);
 	framerender(vars);
 	return (1);
 }
