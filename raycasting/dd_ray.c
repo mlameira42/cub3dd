@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dd_ray.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:18:07 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/16 13:00:26 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/16 22:47:02 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	draw3d(t_game *g, t_rays *rays, int x, int h)
 	if (rays->drawend >= h)
 		rays->drawend = h - 1;
 	get_wall_side(g, rays);
-	apply_texture(rays, g, x, g->wall_text[g->texside].txt_w, lineheight);
+	apply_texture(rays, g, x, lineheight);
 	glob()->render.sprite_tex.zbuffer[x] = rays->prepdist;
 }
 

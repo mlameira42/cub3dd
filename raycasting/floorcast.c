@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floorcast.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:15:29 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/16 13:07:54 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/16 22:42:14 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,10 @@ void	value_init(t_game *g, t_rays *ray1, t_rays *ray2, t_floor *floor, int y)
 	floor->floory = g->y + floor->rawdistance * ray1->raydiry;
 }
 
-void	floorcast(t_game *g)
+void	floorcast(t_game *g, t_floor floor)
 {
 	t_rays	ray1;
 	t_rays	ray2;
-	t_floor	floor;
 	int		y;
 	int		x;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 09:30:53 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/16 13:08:57 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/16 22:52:12 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,29 +56,30 @@ bool	texture(t_game *g)
 	return (i == 4);
 }
 
-static void	calculate_tex(t_rays *r, t_game *g, int *texx, int tex_size)
+static int	calculate_tex(t_rays *r, t_game *g, int tex_size)
 {
 	double	wallx;
+	int		texx;
 
+	texx = 0;
 	if (r->side == 0)
 		wallx = g->y + r->prepdist * r->raydiry;
 	else
 		wallx = g->x + r->prepdist * r->raydirx;
 	wallx -= floor((wallx));
-	*(texx) = (int)(wallx * (double)tex_size);
+	texx = (int)(wallx * (double)tex_size);
 	if ((r->side == 0 && r->raydirx > 0) || (r->side == 1 && r->raydiry < 0))
-		*(texx) = tex_size - *(texx) - 1;
+		texx = tex_size - texx - 1;
+	return texx;
 }
 
-void	apply_texture(t_rays *r, t_game *g, int x, int tex_size, int lineheight)
+void	apply_texture(t_rays *r, t_game *g, int x, int lineheight)
 {
-	int		texx;
 	int		texy;
 	int		y;
 	double	texpos;
 	double	step;
 
-	calculate_tex(r, g, &texx, tex_size);
 	y = r->drawstart - 1;
 	step = (double)g->wall_text[g->texside].txt_h / lineheight;
 	texpos = (r->drawstart - SCREEN_H / 2 + lineheight / 2) * step;
@@ -87,12 +88,43 @@ void	apply_texture(t_rays *r, t_game *g, int x, int tex_size, int lineheight)
 		texy = (int)texpos;
 		if (texy < 0)
 			texy = 0;
-		if (texy >= tex_size)
-			texy = tex_size - 1;
+		if (texy >= g->wall_text[g->texside].txt_w)
+			texy = g->wall_text[g->texside].txt_w - 1;
 		texpos += step;
-		r->color = g->wall_text[g->texside].tex[texy * tex_size + texx];
+		r->color = g->wall_text[g->texside].tex \
+		[texy * g->wall_text[g->texside].txt_w + \
+		calculate_tex(r, g, g->wall_text[g->texside].txt_w)];
 		if (r->side)
 			r->color = (r->color >> 1) & 8355711;
 		g->pixels[y * SCREEN_W + x] = r->color;
 	}
 }
+/*
+void	apply_texture(t_rays *r, t_game *g, int x, int lineheight)
+{
+	int		texx;
+	int		texy;
+	int		y;
+	double	texpos;
+	double	step;
+
+	calculate_tex(r, g, &texx, g->wall_text[g->texside].txt_w);
+	y = r->drawstart - 1;
+	step = (double)g->wall_text[g->texside].txt_h / lineheight;
+	texpos = (r->drawstart - SCREEN_H / 2 + lineheight / 2) * step;
+	while (++y < r->drawend)
+	{
+		texy = (int)texpos;
+		if (texy < 0)
+			texy = 0;
+		if (texy >= g->wall_text[g->texside].txt_w)
+			texy = g->wall_text[g->texside].txt_w - 1;
+		texpos += step;
+		r->color = g->wall_text[g->texside].tex \
+		[texy * g->wall_text[g->texside].txt_w + texx];
+		if (r->side)
+			r->color = (r->color >> 1) & 8355711;
+		g->pixels[y * SCREEN_W + x] = r->color;
+	}
+}
+*/

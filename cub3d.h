@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:38:51 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/16 12:55:13 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/16 22:47:11 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,9 +158,9 @@ bool		ft_floodfill(char **map, int y, int x);
 void		ft_get_start(void);
 t_rays		dda_ray(t_game *g, int x, int w, int h);
 void		apply_texture(t_rays *r, t_game *g, int x,
-				int tex_size, int lineHeight);
+				int lineHeight);
 bool		texture(t_game *g);
-void		floorcast(t_game *g);
+void		floorcast(t_game *g, t_floor floor);
 void		moviment(int key, t_game *vars);
 int			framerender(t_game *g);
 int			createv(int key, t_game *vars);

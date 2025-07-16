@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   testes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:19:18 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/16 12:55:29 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/16 22:42:33 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 int	framerender(t_game *g)
 {
 	int	x;
+	t_floor	floor;
 
 	x = -1;
 	while (++x < g->mapsize[0] * g->mapsize[1])
 		g->pixels[x] = 0x000000;
 	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
 	mlx_clear_window(g->mlx, g->win);
-	floorcast(g);
+	floorcast(g, floor);
 	x = -1;
 	while (++x < g->mapsize[1])
 		dda_ray(g, x, g->mapsize[1], g->mapsize[0]);
