@@ -6,7 +6,7 @@
 /*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 10:58:05 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/09 10:49:37 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/16 12:55:46 by nsilva-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	movecorr(t_game *g, int posX, double posY, int side)
 	else
 		mov3 = glob()->map[(int)(posY + 0.2)][(int)g->x];
 	if (mov1 && mov1 != '1')
-		g->x += (g->dirY * MOVESPEED) * side;
+		g->x += (g->diry * MOVESPEED) * side;
 	if (mov2 && mov2 != '1' && mov3 != '1')
-		g->y -= (g->dirX * MOVESPEED) * side;
+		g->y -= (g->dirx * MOVESPEED) * side;
 	return (1);
 }

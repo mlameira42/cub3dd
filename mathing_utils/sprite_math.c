@@ -3,12 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_math.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 10:22:22 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/03 10:22:32 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/16 12:39:58 by nsilva-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-

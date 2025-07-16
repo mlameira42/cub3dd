@@ -3,119 +3,115 @@
 /*                                                        :::      ::::::::   */
 /*   dd_ray.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:18:07 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/15 15:24:50 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/16 13:00:26 by nsilva-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-void    deltadistances(t_rays *ray)
+
+void	deltadistances(t_rays *ray)
 {
-    if (ray->rayDirX == 0)
-        ray->deltaDistX = 1e30;
-    else
-        ray->deltaDistX = fabs(1 / ray->rayDirX);
-     if (ray->rayDirY == 0)
-        ray->deltaDistY = 1e30;
-    else
-        ray->deltaDistY = fabs(1 / ray->rayDirY);
+	if (ray->raydirx == 0)
+		ray->deltadistx = 1e30;
+	else
+		ray->deltadistx = fabs(1 / ray->raydirx);
+	if (ray->raydiry == 0)
+		ray->deltadisty = 1e30;
+	else
+		ray->deltadisty = fabs(1 / ray->raydiry);
 }
 
-void    rays_innit(t_rays *ray, t_game *g)
+void	rays_innit(t_rays *ray, t_game *g)
 {
-    deltadistances(ray);
-    
-    if (ray->rayDirX < 0)
-    {
-        ray->stepX = -1;
-        ray->sideDistX = (g->x - ray->mapX) * ray->deltaDistX;
-    }
-    else
-    {
-        ray->stepX = 1;
-        ray->sideDistX = (ray->mapX + 1.0 - g->x) * ray->deltaDistX;
-    }
-    if (ray->rayDirY < 0)
-    {
-        ray->stepY = -1;
-        ray->sideDistY = (g->y - ray->mapY) * ray->deltaDistY;
-    }
-    else
-    {
-        ray->stepY = 1;       
-        ray->sideDistY = (ray->mapY + 1.0 - g->y) * ray->deltaDistY;
-    }
-}
-/*
-    if (rays->side == 0)
-        perpDist = (rays->mapX - g->x + (1 - rays->stepX) / 2.0) / rays->rayDirX;
-    else
-        perpDist = (rays->mapY - g->y + (1 - rays->stepY) / 2.0) / rays->rayDirY;
-*/
-void    get_wall_side(t_game *g, t_rays *rays)
-{
-    if (rays->side == 0)
+	deltadistances(ray);
+	if (ray->raydirx < 0)
 	{
-		if (g->dirX < 0)
+		ray->stepx = -1;
+		ray->sidedistx = (g->x - ray->mapx) * ray->deltadistx;
+	}
+	else
+	{
+		ray->stepx = 1;
+		ray->sidedistx = (ray->mapx + 1.0 - g->x) * ray->deltadistx;
+	}
+	if (ray->raydiry < 0)
+	{
+		ray->stepy = -1;
+		ray->sidedisty = (g->y - ray->mapy) * ray->deltadisty;
+	}
+	else
+	{
+		ray->stepy = 1;
+		ray->sidedisty = (ray->mapy + 1.0 - g->y) * ray->deltadisty;
+	}
+}
+
+void	get_wall_side(t_game *g, t_rays *rays)
+{
+	if (rays->side == 0)
+	{
+		if (g->dirx < 0)
 			g->texside = WEST;
 		else
 			g->texside = EAST;
 	}
 	else
 	{
-		if (g->dirY > 0)
+		if (g->diry > 0)
 			g->texside = SOUTH;
 		else
 			g->texside = NORTH;
 	}
 }
-void    draw3d(t_game *g, t_rays *rays, int x, int h)
-{
-    int lineHeight;
 
-    if (rays->side == 0)
-        rays->prepDist = (rays->sideDistX - rays->deltaDistX);
-    else
-        rays->prepDist = (rays->sideDistY - rays->deltaDistY);
-    lineHeight = (int)(h / rays->prepDist);
-    rays->drawStart = (-lineHeight / 2) + (h / 2);
-    rays->drawEnd = (lineHeight / 2) + (h / 2);
-    if (rays->drawStart < 0) 
-        rays->drawStart = 0;
-    if (rays->drawEnd >= h) 
-        rays->drawEnd = h - 1;
-    get_wall_side(g, rays);
-    apply_texture(rays, g, x, g->wall_text[g->texside].txt_w, lineHeight); 
-	glob()->render.sprite_tex.ZBuffer[x] = rays->prepDist;
+void	draw3d(t_game *g, t_rays *rays, int x, int h)
+{
+	int	lineheight;
+
+	if (rays->side == 0)
+		rays->prepdist = (rays->sidedistx - rays->deltadistx);
+	else
+		rays->prepdist = (rays->sidedisty - rays->deltadisty);
+	lineheight = (int)(h / rays->prepdist);
+	rays->drawstart = (-lineheight / 2) + (h / 2);
+	rays->drawend = (lineheight / 2) + (h / 2);
+	if (rays->drawstart < 0)
+		rays->drawstart = 0;
+	if (rays->drawend >= h)
+		rays->drawend = h - 1;
+	get_wall_side(g, rays);
+	apply_texture(rays, g, x, g->wall_text[g->texside].txt_w, lineheight);
+	glob()->render.sprite_tex.zbuffer[x] = rays->prepdist;
 }
 
-t_rays dda_ray(t_game *g, int x, int w, int h)
+t_rays	dda_ray(t_game *g, int x, int w, int h)
 {
-    t_rays  ray;
+	t_rays	ray;
 
-    ray.rayDirX = g->dirX + g->planeX * (double)(2 * x / (double)w - 1);
-    ray.rayDirY = g->dirY + g->planeY * (double)(2 * x / (double)w - 1);
-    ray.mapX = (int)g->x;
-    ray.mapY = (int)g->y;
-    rays_innit(&ray, g);
-    while (glob()->map[ray.mapY] && glob()->map[ray.mapY][ray.mapX] != '1') 
-    {
-		sprite_visibility(g, ray.mapX, ray.mapY);
-        if (ray.sideDistX < ray.sideDistY) 
-        {
-            ray.sideDistX += ray.deltaDistX;
-            ray.mapX += ray.stepX;
-            ray.side = 0;
-        } 
-        else 
-        {
-            ray.sideDistY += ray.deltaDistY;
-            ray.mapY += ray.stepY;
-            ray.side = 1;
-        }
-    }
-    draw3d(g, &ray, x, h);
-    return ray;
+	ray.raydirx = g->dirx + g->planex * (double)(2 * x / (double)w - 1);
+	ray.raydiry = g->diry + g->planey * (double)(2 * x / (double)w - 1);
+	ray.mapx = (int)g->x;
+	ray.mapy = (int)g->y;
+	rays_innit(&ray, g);
+	while (glob()->map[ray.mapy] && glob()->map[ray.mapy][ray.mapx] != '1')
+	{
+		sprite_visibility(g, ray.mapx, ray.mapy);
+		if (ray.sidedistx < ray.sidedisty)
+		{
+			ray.sidedistx += ray.deltadistx;
+			ray.mapx += ray.stepx;
+			ray.side = 0;
+		}
+		else
+		{
+			ray.sidedisty += ray.deltadisty;
+			ray.mapy += ray.stepy;
+			ray.side = 1;
+		}
+	}
+	draw3d(g, &ray, x, h);
+	return (ray);
 }

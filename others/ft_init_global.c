@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_global.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:45:58 by nsilva-n          #+#    #+#             */
-/*   Updated: 2025/07/16 10:32:52 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/16 12:39:16 by nsilva-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_init_global(char *str)
 	global = glob();
 	global->doc = ft_strdup(str);
 	if (!global->doc)
-		return ft_printf("Malloc "), ft_exit(1);
+		return (ft_printf("Malloc "), ft_exit(1));
 	global->map = NULL;
 	global->fld_map = NULL;
 	global->doc_len = ft_strlen(str);

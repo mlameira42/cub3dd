@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:44:26 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/16 10:31:43 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/16 12:56:37 by nsilva-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ static void	player_updown(t_game *player)
 {
 	if (player->dir == 'S')
 	{
-		player->dirX = 0;
-		player->dirY = 1;
-		player->planeX = -0.66;
-		player->planeY = 0;
+		player->dirx = 0;
+		player->diry = 1;
+		player->planex = -0.66;
+		player->planey = 0;
 	}
 	else if (player->dir == 'N')
 	{
-		player->dirX = 0;
-		player->dirY = -1;
-		player->planeX = 0.66;
-		player->planeY = 0;
+		player->dirx = 0;
+		player->diry = -1;
+		player->planex = 0.66;
+		player->planey = 0;
 	}
 }
 
@@ -59,17 +59,17 @@ static void	player_sides(t_game *player)
 {
 	if (player->dir == 'E')
 	{
-		player->dirX = -1;
-		player->dirY = 0;
-		player->planeX = 0;
-		player->planeY = -0.66;
+		player->dirx = -1;
+		player->diry = 0;
+		player->planex = 0;
+		player->planey = -0.66;
 	}
 	else if (player->dir == 'W')
 	{
-		player->dirX = 1;
-		player->dirY = 0;
-		player->planeX = 0;
-		player->planeY = 0.66;
+		player->dirx = 1;
+		player->diry = 0;
+		player->planex = 0;
+		player->planey = 0.66;
 	}
 }
 
@@ -83,11 +83,11 @@ void	init_game(t_game *g)
 	g->mlx = mlx_init();
 	g->win = mlx_new_window(g->mlx, g->mapsize[1], g->mapsize[0], "Cub3d");
 	if (!texture(g))
-		return ft_printf("Texture "), ft_exit(2);
+		return (ft_printf("Texture "), ft_exit(2));
 	sprite_find(&g->sprite_tex);
 	g->img = mlx_new_image(g->mlx, g->mapsize[1], g->mapsize[0]);
 	if (!g->img)
-		return ft_printf("Img load "), ft_exit(2);
+		return (ft_printf("Img load "), ft_exit(2));
 	g->pixels = (int *)mlx_get_data_addr(g->img, &g->bpp, &g->line_len,
 			&g->endian);
 	g->texside = 0;

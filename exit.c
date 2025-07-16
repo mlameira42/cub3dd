@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:56:16 by nsilva-n          #+#    #+#             */
-/*   Updated: 2025/07/16 09:05:03 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/16 11:51:45 by nsilva-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	free_game(t_game *g)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (glob()->render.mlx)
