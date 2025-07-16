@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:22:42 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/07 11:41:59 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/16 09:53:09 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void    updown_mov(int key, t_game *vars)
     char up1;
     char up2;
 
-    up1 = glob()->map[(int)vars->y][(int)(vars->x + vars->dirX * MOVESPEED)];
-    up2 = glob()->map[(int)(vars->y + vars->dirY * MOVESPEED)][(int)vars->x];
+    up1 = glob()->map[(int)vars->y][(int)((vars->x + 0.1) + vars->dirX * MOVESPEED)];
+    up2 = glob()->map[(int)((vars->y - 0.1) + vars->dirY * MOVESPEED)][(int)vars->x];
     if (key == 'w')
     {
         if(up1 && up1 != '1')
@@ -29,7 +29,7 @@ void    updown_mov(int key, t_game *vars)
     }
     else
     {
-        if(glob()->map[(int)(vars->y - vars->dirY * MOVESPEED)]\
+        if(glob()->map[(int)((vars->y + 0.1) - vars->dirY * MOVESPEED)]\
 			[(int)vars->x] != '1')
             vars->y -= vars->dirY * MOVESPEED;
         if(glob()->map[(int)vars->y] \

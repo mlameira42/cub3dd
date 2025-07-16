@@ -6,13 +6,13 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:56:16 by nsilva-n          #+#    #+#             */
-/*   Updated: 2025/07/16 08:47:55 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/16 09:05:03 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_game(t_game *g)
+static void	free_game(t_game *g)
 {
 	int i;
 
