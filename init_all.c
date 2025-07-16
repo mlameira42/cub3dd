@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:44:26 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/15 15:21:07 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/16 08:28:20 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	init_game(t_game *g)
 	g->win = mlx_new_window(g->mlx, g->mapsize[1], g->mapsize[0], "Cub3d");
 	if (!texture(g))
 		return ft_printf("Texture "), ft_exit(2);
-	sprite_find(g, &g->sprite_tex);
+	sprite_find(&g->sprite_tex);
 	g->img = mlx_new_image(g->mlx, g->mapsize[1], g->mapsize[0]);
 	if (!g->img)
 		return ft_exit(2);
