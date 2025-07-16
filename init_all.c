@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:44:26 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/16 08:28:20 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/16 10:31:43 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	init_game(t_game *g)
 	sprite_find(&g->sprite_tex);
 	g->img = mlx_new_image(g->mlx, g->mapsize[1], g->mapsize[0]);
 	if (!g->img)
-		return ft_exit(2);
+		return ft_printf("Img load "), ft_exit(2);
 	g->pixels = (int *)mlx_get_data_addr(g->img, &g->bpp, &g->line_len,
 			&g->endian);
 	g->texside = 0;
