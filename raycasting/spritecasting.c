@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:11:53 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/15 15:27:55 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/16 09:05:33 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	sprite_tex(t_game *g)
 	return 1;
 }
 
-void sprite_utils(t_game *g, t_texture *sprite, double sX, double sY)
+static void sprite_utils(t_game *g, t_texture *sprite, double sX, double sY)
 {
 	double invDet;
 	double transformX;
@@ -40,7 +40,7 @@ void sprite_utils(t_game *g, t_texture *sprite, double sX, double sY)
 	sprite->spriteHeight = abs((int)(SCREEN_H / (sprite->transformY))) / 1.5;
 }
 
-void drawingcalcs(t_texture *sprite)
+static void drawingcalcs(t_texture *sprite)
 {
 	sprite->drawStartY = -sprite->spriteHeight / 2 + SCREEN_H / 2 + 5;
 	if (sprite->drawStartY < 0)
@@ -56,7 +56,7 @@ void drawingcalcs(t_texture *sprite)
 	if (sprite->drawEndX >= SCREEN_W)
 		sprite->drawEndX = SCREEN_W - 1;
 }
-void drawstart(t_game *g, t_texture *sprite)
+static void drawstart(t_game *g, t_texture *sprite)
 {
 	int stripe;
 	int texX;
