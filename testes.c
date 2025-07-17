@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:19:18 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/16 22:42:33 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/17 13:11:14 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	framerender(t_game *g)
 {
-	int	x;
+	int		x;
 	t_floor	floor;
 
 	x = -1;
@@ -22,7 +22,7 @@ int	framerender(t_game *g)
 		g->pixels[x] = 0x000000;
 	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
 	mlx_clear_window(g->mlx, g->win);
-	floorcast(g, floor);
+	floorcast(g, &floor);
 	x = -1;
 	while (++x < g->mapsize[1])
 		dda_ray(g, x, g->mapsize[1], g->mapsize[0]);
@@ -34,6 +34,11 @@ int	framerender(t_game *g)
 
 int	createv(int key, t_game *vars)
 {
+	int	time;
+
+	time = 0;
+	while (time < 8333333)
+		time++;
 	moviment(key, vars);
 	if (key == 'q' || key == 65307)
 		ft_exit(0);

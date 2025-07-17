@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:18:07 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/16 22:47:02 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/17 12:43:56 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	deltadistances(t_rays *ray)
 
 void	rays_innit(t_rays *ray, t_game *g)
 {
+	ray->side = 0;
 	deltadistances(ray);
 	if (ray->raydirx < 0)
 	{

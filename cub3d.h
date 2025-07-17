@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:38:51 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/16 22:47:11 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/17 13:35:15 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
 
-# define SCREEN_W 640
-# define SCREEN_H 480
+# define SCREEN_W 960
+# define SCREEN_H 720
 # define TILE_SIZE 64
 # define MOVESPEED 0.1
 # define ROTSPEED 0.0174523
@@ -56,6 +56,7 @@ typedef struct s_texture
 	double	spritex;
 	double	spritey;
 	int		ishiting;
+	int		stripe;
 }			t_texture;
 
 typedef struct s_game
@@ -160,7 +161,7 @@ t_rays		dda_ray(t_game *g, int x, int w, int h);
 void		apply_texture(t_rays *r, t_game *g, int x,
 				int lineHeight);
 bool		texture(t_game *g);
-void		floorcast(t_game *g, t_floor floor);
+void		floorcast(t_game *g, t_floor *floor);
 void		moviment(int key, t_game *vars);
 int			framerender(t_game *g);
 int			createv(int key, t_game *vars);

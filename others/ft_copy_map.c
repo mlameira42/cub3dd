@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_copy_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 14:29:31 by nsilva-n          #+#    #+#             */
-/*   Updated: 2025/07/16 13:10:34 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/17 13:36:25 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 bool	ft_copy_map(void)
 {
 	char	*line;
+	char	**map;
 	int		i;
 
-	glob()->map = malloc(sizeof(char *) * (glob()->rows + 1));
-	if (!glob()->map)
+	map = malloc(sizeof(char *) * (glob()->rows + 1));
+	if (!map)
 		return (false);
 	line = ft_get_next_line(glob()->fd);
 	i = -1;
@@ -26,8 +27,8 @@ bool	ft_copy_map(void)
 	{
 		if (!glob()->empty_lines)
 		{
-			glob()->map[++i] = ft_strtrim(line, "\n");
-			if (!glob()->map[i])
+			map[++i] = ft_strtrim(line, "\n");
+			if (!map[i])
 				return (free(line), false);
 		}
 		if (!ft_linelen(line))
@@ -35,6 +36,7 @@ bool	ft_copy_map(void)
 		free(line);
 		line = ft_get_next_line(glob()->fd);
 	}
-	glob()->map[++i] = NULL;
+	map[++i] = NULL;
+	glob()->map = map;
 	return (true);
 }

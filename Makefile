@@ -6,11 +6,11 @@
 #    By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 12:54:07 by nsilva-n          #+#    #+#              #
-#    Updated: 2025/07/15 12:45:15 by mlameira         ###   ########.fr        #
+#    Updated: 2025/07/17 12:31:52 by mlameira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub3D
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 SRC = 	main.c validate.c init_all.c																									\

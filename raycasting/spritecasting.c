@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spritecasting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:11:53 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/16 13:05:10 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/17 13:10:09 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,20 @@ static void	drawingcalcs(t_texture *sprite)
 
 static void	drawstart(t_game *g, t_texture *sprite)
 {
-	int			stripe;
 	int			texx;
 	int			texy;
 	int			d;
 	int			y;
 	__uint32_t	color;
 
-	stripe = sprite->drawstartx - 1;
-	while (++stripe < sprite->drawendx)
+	sprite->stripe = sprite->drawstartx - 1;
+	while (++(sprite->stripe) < sprite->drawendx)
 	{
-		texx = (int)(256 * (stripe - (-sprite->spritewidth / 2
+		texx = (int)(256 * (sprite->stripe - (-sprite->spritewidth / 2
 						+ sprite->spritescreenx)) * sprite->txt_w
 				/ sprite->spritewidth) / 256;
-		if (sprite->transformy > 0 && stripe > 0 && stripe < SCREEN_W
-			&& sprite->transformy < sprite->zbuffer[stripe])
+		if (sprite->transformy > 0 && sprite->stripe > 0 && sprite->stripe
+			< SCREEN_W && sprite->transformy < sprite->zbuffer[sprite->stripe])
 			y = sprite->drawstarty - 1;
 		while (++y < sprite->drawendy)
 		{
@@ -82,7 +81,7 @@ static void	drawstart(t_game *g, t_texture *sprite)
 			texy = ((d * g->sprite_tex.txt_h) / sprite->spriteheight) / 256;
 			color = g->sprite_tex.tex[g->sprite_tex.txt_w * texy + texx];
 			if ((color & 0x00FFFFFF) != 0)
-				g->pixels[SCREEN_W * y + stripe] = color;
+				g->pixels[SCREEN_W * y + sprite->stripe] = color;
 		}
 	}
 }

@@ -3,39 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   moviment.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:22:42 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/16 13:06:00 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/17 13:13:06 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	updown_mov(int key, t_game *vars)
+static void	updwncorr(t_game *vars, double x, double y, int side)
 {
 	char	up1;
 	char	up2;
 
-	up1 = glob()->map[(int)vars->y]
-	[(int)((vars->x + 0.1) + vars->dirx * MOVESPEED)];
-	up2 = glob()->map[(int)((vars->y - 0.1) + vars->diry * MOVESPEED)]
-	[(int)vars->x];
+	up1 = glob()->map[(int)vars->y][(int)x];
+	up2 = glob()->map[(int)y][(int)vars->x];
+	if (up1 && up1 != '1')
+		vars->x += (vars->dirx * MOVESPEED) * side;
+	if (up2 && up2 != '1')
+		vars->y += (vars->diry * MOVESPEED) * side;
+}
+
+void	updown_mov(int key, t_game *vars)
+{
 	if (key == 'w')
 	{
-		if (up1 && up1 != '1')
-			vars->x += vars->dirx * MOVESPEED;
-		if (up2 && up2 != '1')
-			vars->y += vars->diry * MOVESPEED;
+		updwncorr(vars, (vars->x + 0.1) + vars->dirx * MOVESPEED,
+			vars->y - 0.1 + (vars->diry) * MOVESPEED, 1);
 	}
 	else
 	{
-		if (glob()->map[(int)((vars->y + 0.1) - vars->diry * MOVESPEED)]
-			[(int)vars->x] != '1')
-			vars->y -= vars->diry * MOVESPEED;
-		if (glob()->map[(int)vars->y]
-			[(int)(vars->x - vars->dirx * MOVESPEED)] != '1')
-			vars->x -= vars->dirx * MOVESPEED;
+		updwncorr(vars, (vars->x - 0.1) - vars->dirx * MOVESPEED,
+			(vars->y + 0.1) - vars->diry * MOVESPEED, -1);
 	}
 }
 
@@ -64,13 +64,13 @@ static void	sideways_walk(int key, t_game *vars)
 {
 	if (key == 'a')
 	{
-		movecorr(vars, vars->x + vars->diry * MOVESPEED,
-			vars->y + vars->dirx * MOVESPEED, 1);
+		movecorr(vars, (vars->x + 0.2) + vars->diry * MOVESPEED,
+			(vars->y - 0.2) + vars->dirx * MOVESPEED, 1);
 	}
 	else if (key == 'd')
 	{
-		movecorr(vars, vars->x - vars->diry * MOVESPEED,
-			vars->y - vars->dirx * MOVESPEED, -1);
+		movecorr(vars, (vars->x - 0.2) - vars->diry * MOVESPEED,
+			(vars->y + 0.02) - vars->dirx * MOVESPEED, -1);
 	}
 }
 
