@@ -1,9 +1,9 @@
 NO textures/wall.xpm
-SO textures/wall.xpm
+SO textures/wall_other.xpm
 WE textures/wall.xpm
 EA textures/floor.xpm
 
-F 0,255,34
+F 250,250,100
 C 34,2,200
 
 111111111111111111111

@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:38:51 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/17 13:35:15 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/17 16:37:53 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,21 +97,21 @@ typedef struct s_floor
 
 typedef struct s_rays
 {
-	double	raydirx;
-	double	raydiry;
-	double	sidedistx;
-	double	sidedisty;
-	double	deltadistx;
-	double	deltadisty;
-	double	prepdist;
-	int		mapx;
-	int		mapy;
-	int		stepx;
-	int		stepy;
-	int		side;
-	int		color;
-	int		drawstart;
-	int		drawend;
+	double			raydirx;
+	double			raydiry;
+	double			sidedistx;
+	double			sidedisty;
+	double			deltadistx;
+	double			deltadisty;
+	double			prepdist;
+	int				mapx;
+	int				mapy;
+	int				stepx;
+	int				stepy;
+	int				side;
+	unsigned long	color;
+	int				drawstart;
+	int				drawend;
 }	t_rays;
 
 typedef struct s_global

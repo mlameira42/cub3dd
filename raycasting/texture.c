@@ -6,13 +6,13 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 09:30:53 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/17 13:08:36 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/17 16:46:26 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-unsigned long	get_color(int *rgb)
+static unsigned long	get_color(int *rgb)
 {
 	int	r;
 	int	g;
@@ -27,7 +27,7 @@ unsigned long	get_color(int *rgb)
 		return (0);
 	if (g > 255 || g < 0)
 		return (0);
-	return (((r & 0x0ff) >> 16) + ((g & 0x0ff) >> 8) + (b & 0x0ff));
+	return (((r ) << 16) + ((g ) << 8) + (b ));
 }
 
 bool	texture(t_game *g)
@@ -38,13 +38,13 @@ bool	texture(t_game *g)
 	int	i;
 
 	i = -1;
-	g->wall_text[NORTH].img = mlx_xpm_file_to_image(g->mlx, glob()->e_wall_tex,
+	g->wall_text[NORTH].img = mlx_xpm_file_to_image(g->mlx, glob()->n_wall_tex,
 			&g->wall_text[NORTH].txt_w, &g->wall_text[NORTH].txt_h);
-	g->wall_text[WEST].img = mlx_xpm_file_to_image(g->mlx, glob()->e_wall_tex,
+	g->wall_text[WEST].img = mlx_xpm_file_to_image(g->mlx, glob()->w_wall_tex,
 			&g->wall_text[WEST].txt_w, &g->wall_text[WEST].txt_h);
 	g->wall_text[EAST].img = mlx_xpm_file_to_image(g->mlx, glob()->e_wall_tex,
 			&g->wall_text[EAST].txt_w, &g->wall_text[EAST].txt_h);
-	g->wall_text[SOUTH].img = mlx_xpm_file_to_image(g->mlx, glob()->e_wall_tex,
+	g->wall_text[SOUTH].img = mlx_xpm_file_to_image(g->mlx, glob()->s_wall_tex,
 			&g->wall_text[SOUTH].txt_w, &g->wall_text[SOUTH].txt_h);
 	g->ceil = get_color(glob()->ceil_color);
 	g->floor_tex = get_color(glob()->floor_color);
