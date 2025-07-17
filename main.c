@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:44:10 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/09 10:52:21 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/17 13:42:51 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char *argv[])
 {
 	if (argc != 2)
-		return (write(1, "need more args\n", 16), 1);
+		return (ft_printf( "Only 2 args\n"), 1);
 	init_all(argv[1]);
 	return (0);
 }
