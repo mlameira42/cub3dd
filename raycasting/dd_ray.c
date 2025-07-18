@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:18:07 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/17 12:43:56 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/18 11:01:32 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ void	get_wall_side(t_game *g, t_rays *rays)
 {
 	if (rays->side == 0)
 	{
-		if (g->dirx < 0)
+		if (rays->stepx < 0)
 			g->texside = WEST;
 		else
 			g->texside = EAST;
 	}
 	else
 	{
-		if (g->diry > 0)
+		if (rays->stepy > 0)
 			g->texside = SOUTH;
 		else
 			g->texside = NORTH;
