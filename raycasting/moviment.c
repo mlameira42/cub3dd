@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:22:42 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/17 13:13:06 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/18 09:33:13 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ static void	updwncorr(t_game *vars, double x, double y, int side)
 
 	up1 = glob()->map[(int)vars->y][(int)x];
 	up2 = glob()->map[(int)y][(int)vars->x];
-	if (up1 && up1 != '1')
+	if ((up1 && up2) && (up1 != '1' && up2 != '1'))
+	{
 		vars->x += (vars->dirx * MOVESPEED) * side;
-	if (up2 && up2 != '1')
 		vars->y += (vars->diry * MOVESPEED) * side;
+	}
 }
 
 void	updown_mov(int key, t_game *vars)
@@ -70,7 +71,7 @@ static void	sideways_walk(int key, t_game *vars)
 	else if (key == 'd')
 	{
 		movecorr(vars, (vars->x - 0.2) - vars->diry * MOVESPEED,
-			(vars->y + 0.02) - vars->dirx * MOVESPEED, -1);
+			(vars->y + 0.2) - vars->dirx * MOVESPEED, -1);
 	}
 }
 
