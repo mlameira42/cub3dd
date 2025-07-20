@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:44:26 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/16 12:56:37 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/20 19:25:06 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	init_game(t_game *g)
 	g->texside = 0;
 	framerender(g);
 	mlx_hook(g->win, 2, 1L << 0, createv, g);
+	mlx_hook(g->win, 17, 0, ft_ext, &g->texside);
 	mlx_loop(g->mlx);
 }
 

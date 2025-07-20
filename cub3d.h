@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:38:51 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/18 10:16:23 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/20 19:25:42 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,5 +171,5 @@ int			sprite_tex(t_game *g);
 void		spritecasting(t_game *g, t_texture *sprite, double sX, double sY);
 int			movecorr(t_game *g, int posX, double posY, int side);
 bool		validate_map(void);
-
+int			ft_ext(void *param);
 #endif

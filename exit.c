@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:56:16 by nsilva-n          #+#    #+#             */
-/*   Updated: 2025/07/16 11:51:45 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/20 19:26:16 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,10 @@ void	ft_exit(int status)
 	if (status)
 		ft_fprintf(2, "Error\n");
 	exit(status);
+}
+int ft_ext(void *param)
+{
+	(void)param;
+    ft_exit(0);
+    return (1);
 }
