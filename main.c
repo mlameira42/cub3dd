@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:44:10 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/21 10:34:28 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/21 13:42:36 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char *argv[])
 {
 	if (argc != 2)
-		return (ft_printf("Only 2 args\n"), 1);
+		return (ft_fprintf(2, "Only 2 args\n"), 1);
 	init_all(argv[1]);
 	return (0);
 }

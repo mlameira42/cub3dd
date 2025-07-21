@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 09:30:53 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/21 10:33:31 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/21 13:42:36 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ bool	texture(t_game *g)
 	g->ceil = get_color(glob()->ceil_color);
 	g->floor_tex = get_color(glob()->floor_color);
 	if (!sprite_tex(g))
-		return (ft_printf("Sprite "), 0);
+		return (ft_fprintf(2, "Sprite "), 0);
 	while (++i < 4 && g->wall_text[i].img)
 		g->wall_text[i].tex = (int *)mlx_get_data_addr(g->wall_text[i].img,
 				&bpp, &llen, &endian);
