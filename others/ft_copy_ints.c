@@ -6,7 +6,7 @@
 /*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:07:42 by nsilva-n          #+#    #+#             */
-/*   Updated: 2025/06/23 15:27:56 by nsilva-n         ###   ########.fr       */
+/*   Updated: 2025/07/21 13:31:58 by nsilva-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	*ft_copy_ints(char *str, char c)
 		return (NULL);
 	}
 	i = -1;
-	while (temp[++i] && i < 3)
+	while (temp[++i] && i < 3 && ft_isnum(temp[i]))
 		res[i] = ft_atoi(temp[i]);
 	if (i != 3 || (!ft_strchr(temp[2], '0') && !res[2]) || temp[3])
 		return (ft_free_strs(temp), free(res), NULL);

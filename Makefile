@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+         #
+#    By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 12:54:07 by nsilva-n          #+#    #+#              #
-#    Updated: 2025/07/18 10:27:05 by mlameira         ###   ########.fr        #
+#    Updated: 2025/07/21 13:30:18 by nsilva-n         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 SRC = 	main.c validate.c init_all.c																									\
 		others/ft_close.c others/ft_copy_info.c others/ft_copy_ints.c others/ft_copy_map.c others/ft_debugger.c others/ft_free_strs.c	\
 		others/ft_get_info.c others/ft_get_map_size.c others/ft_global.c others/ft_init_global.c others/ft_main_ver.c					\
-		others/ft_ver_info.c others/ft_ver_line.c others/ft_dup_map.c others/validate_map.c others/ft_get_start.c						\
+		others/ft_ver_info.c others/ft_ver_line.c others/ft_dup_map.c others/validate_map.c others/ft_get_start.c others/ft_isnum.c		\
 		exit.c raycasting/dd_ray.c raycasting/floorcast.c raycasting/sprite_innit.c raycasting/spritecasting.c movcorr.c				\
 		testes.c raycasting/moviment.c raycasting/texture.c\
 

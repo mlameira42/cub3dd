@@ -3,7 +3,7 @@ SO textures/wall_other.xpm
 WE textures/wall.xpm
 EA textures/floor.xpm
 
-F 250,250,100
+F 250,250,a0
 C 34,2,200
 
 111111111111111111111

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nsilva-n <nsilva-n@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:38:51 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/20 19:25:42 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/21 13:30:47 by nsilva-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ void		ft_debugger(void);
 void		validate(char *av);
 void		init_all(char *map);
 bool		ft_dup_map(void);
+bool		ft_isnum(char *str);
 bool		ft_floodfill(char **map, int y, int x);
 void		ft_get_start(void);
 t_rays		dda_ray(t_game *g, int x, int w, int h);
