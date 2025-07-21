@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 09:30:53 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/17 16:46:26 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/21 10:33:31 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static unsigned long	get_color(int *rgb)
 		return (0);
 	if (g > 255 || g < 0)
 		return (0);
-	return (((r ) << 16) + ((g ) << 8) + (b ));
+	return (((r) << 16) + ((g) << 8) + (b));
 }
 
 bool	texture(t_game *g)

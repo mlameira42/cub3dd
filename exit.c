@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 12:56:16 by nsilva-n          #+#    #+#             */
-/*   Updated: 2025/07/20 19:26:16 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/21 10:35:06 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,10 @@ void	ft_exit(int status)
 		ft_fprintf(2, "Error\n");
 	exit(status);
 }
-int ft_ext(void *param)
+
+int	ft_ext(void *param)
 {
 	(void)param;
-    ft_exit(0);
-    return (1);
+	ft_exit(0);
+	return (1);
 }
