@@ -1,0 +1,11 @@
+NO textures/wall.xpm
+SO textures/wall_other.xpm
+WE textures/wall.xpm
+EA textures/floor.xpm
+
+F 250,20,0
+C 34,2,200
+
+ 1
+1W1
+ 1

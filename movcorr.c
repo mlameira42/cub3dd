@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 10:58:05 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/18 09:34:31 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/23 09:37:11 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,19 @@
 
 int	movecorr(t_game *g, int posX, double posY, int side)
 {
-	char	mov1;
-	char	mov2;
+	char	up1;
+	char	up2;
 
-	mov1 = glob()->map[(int)g->y][posX];
-	mov2 = glob()->map[(int)posY][(int)g->x];
-	if ((mov1 && mov2) && (mov1 != '1' && mov2 != '1'))
-	{
-		g->x += (g->diry * MOVESPEED) * side;
-		g->y -= (g->dirx * MOVESPEED) * side;
-	}
-	return (1);
+	if (!glob()->map)
+		return (ft_fprintf(2, "Map "), ft_exit(1), 1);
+	up1 = glob()->map[(int)g->y][(int)posX];
+	up2 = glob()->map[(int)posY][(int)g->x];
+	if (!up1 || !up2)
+		return 1;
+	if ((up1 == '1' || up2 == '1') || \
+	(up2 == ' ' || up1 == ' '))
+		return 1;
+	g->x = g->x + (g->dirx * MOVESPEED) * side;
+	g->y = g->y + (g->diry * MOVESPEED) * side;
+	return 0;
 }
