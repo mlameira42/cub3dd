@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 10:58:05 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/23 09:37:11 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/24 11:30:11 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	movecorr(t_game *g, int posX, double posY, int side)
 	if ((up1 == '1' || up2 == '1') || \
 	(up2 == ' ' || up1 == ' '))
 		return 1;
-	g->x = g->x + (g->dirx * MOVESPEED) * side;
-	g->y = g->y + (g->diry * MOVESPEED) * side;
+	g->x = g->x + (g->diry * MOVESPEED) * side;
+	g->y = g->y - (g->dirx * MOVESPEED) * side;
 	return 0;
 }

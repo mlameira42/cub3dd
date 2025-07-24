@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:22:42 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/23 09:39:28 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/24 11:56:26 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,21 @@ static void	sideways_walk(int key, t_game *vars)
 {
 	if (key == 'a')
 	{
-		movecorr(vars, (vars->x + 0.2) + vars->diry * ceil(MOVESPEED),
-			(vars->y - 0.2) + vars->dirx * MOVESPEED, 1);
+		if (vars->diry < 0)
+			movecorr(vars, vars->x + vars->diry * (MOVESPEED),
+				vars->y - vars->dirx * ceil(MOVESPEED), 1);
+		else
+			movecorr(vars, vars->x + vars->diry * ceil(MOVESPEED),
+				vars->y - vars->dirx * (MOVESPEED), 1);
 	}
 	else if (key == 'd')
 	{
-		movecorr(vars, vars->x - vars->diry * MOVESPEED,
-			vars->y - vars->dirx * ceil(MOVESPEED), -1);
+		if (vars->diry < 0)
+			movecorr(vars, (vars->x) - vars->diry * (MOVESPEED),
+				(vars->y) + vars->dirx * ceil(MOVESPEED), -1);
+		else
+			movecorr(vars, (vars->x) - vars->diry * ceil(MOVESPEED),
+				(vars->y) + vars->dirx * (MOVESPEED), -1);
 	}
 }
 
