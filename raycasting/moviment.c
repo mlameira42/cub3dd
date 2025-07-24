@@ -6,7 +6,7 @@
 /*   By: mlameira <mlameira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:22:42 by mlameira          #+#    #+#             */
-/*   Updated: 2025/07/24 11:56:26 by mlameira         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:08:04 by mlameira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ static void	updwncorr(t_game *vars, double x, double y, int side)
 		return (ft_fprintf(2, "Map "), ft_exit(1));
 	if (!glob()->map[(int)vars->y][(int)x] ||
 		!glob()->map[(int)y][(int)vars->x])
-		return;
+		return ;
 	up1 = glob()->map[(int)vars->y][(int)x];
 	up2 = glob()->map[(int)y][(int)vars->x];
 	if ((up1 == '1' || up2 == '1') || \
-	(up2 == ' ' || up1 == ' '))
-		return;
+(up2 == ' ' || up1 == ' '))
+		return ;
 	vars->x = vars->x + (vars->dirx * MOVESPEED) * side;
 	vars->y = vars->y + (vars->diry * MOVESPEED) * side;
 }
@@ -36,20 +36,20 @@ void	updown_mov(int key, t_game *vars)
 	if (key == 'w')
 	{
 		if (vars->diry > 0)
-		updwncorr(vars, (vars->x) + vars->dirx * MOVESPEED,
-			(vars->y) + vars->diry * ceil(MOVESPEED), 1);
+			updwncorr(vars, (vars->x) + vars->dirx * MOVESPEED,
+				(vars->y) + vars->diry * ceil(MOVESPEED), 1);
 		else
 			updwncorr(vars, (vars->x) + vars->dirx * ceil(MOVESPEED),
-			(vars->y) + vars->diry * MOVESPEED, 1);
+				(vars->y) + vars->diry * MOVESPEED, 1);
 	}
 	else
 	{
 		if (vars->dirx > 0)
 			updwncorr(vars, (vars->x) - vars->dirx * MOVESPEED,
-			(vars->y) - vars->diry * ceil(MOVESPEED), -1);
+				(vars->y) - vars->diry * ceil(MOVESPEED), -1);
 		else
 			updwncorr(vars, (vars->x) - vars->dirx * ceil(MOVESPEED),
-			(vars->y) - vars->diry * MOVESPEED, -1);
+				(vars->y) - vars->diry * MOVESPEED, -1);
 	}
 }
 
