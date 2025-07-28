@@ -26,8 +26,6 @@ int	framerender(t_game *g)
 	x = -1;
 	while (++x < g->mapsize[1])
 		dda_ray(g, x, g->mapsize[1], g->mapsize[0]);
-	spritecasting(g, &g->sprite_tex, g->sprite_tex.spritex,
-		g->sprite_tex.spritey);
 	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
 	return (1);
 }

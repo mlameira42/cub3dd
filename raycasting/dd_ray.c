@@ -85,7 +85,6 @@ void	draw3d(t_game *g, t_rays *rays, int x, int h)
 		rays->drawend = h - 1;
 	get_wall_side(g, rays);
 	apply_texture(rays, g, x, lineheight);
-	glob()->render.sprite_tex.zbuffer[x] = rays->prepdist;
 }
 
 t_rays	dda_ray(t_game *g, int x, int w, int h)
@@ -99,7 +98,6 @@ t_rays	dda_ray(t_game *g, int x, int w, int h)
 	rays_innit(&ray, g);
 	while (glob()->map[ray.mapy] && glob()->map[ray.mapy][ray.mapx] != '1')
 	{
-		sprite_visibility(g, ray.mapx, ray.mapy);
 		if (ray.sidedistx < ray.sidedisty)
 		{
 			ray.sidedistx += ray.deltadistx;
